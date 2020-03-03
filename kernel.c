@@ -163,11 +163,11 @@ void kernel_entry()
   print_string("");
   print_new_line();
 
-  print_string("|-------------------|");
+  print_string("|------------------|");
   print_new_line();
-  print_string(" Welcome to charleX !");
+  print_string("!Welcome to charleX!");
   print_new_line();
-  print_string("|-------------------|");
+  print_string("|------------------|");
   print_new_line();
   print_new_line();
   print_string("This code wroted by amzy-0 (M.Amin Azimi.K)");
