@@ -164,11 +164,11 @@ void kernel_entry()
   print_string("");
   print_new_line();
 
-  print_string("|-----------------------------|");
+  print_string("|----------------------------|");
   print_new_line();
-  print_string(" Welcome to charleX installer !");
+  print_string("!Welcome to charleX installer!");
   print_new_line();
-  print_string("|-----------------------------|");
+  print_string("|----------------------------|");
   print_new_line();
   print_new_line();
   print_string("This code wroted by amzy-0 (M.Amin Azimi.K)");
