@@ -1,4 +1,5 @@
 #include "kernel.h"
+#include "input.h"
 //index for video buffer array
 uint32 vga_index;
 //counter to store new lines

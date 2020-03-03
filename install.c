@@ -177,7 +177,7 @@ void kernel_entry()
   print_string("Retrieved from \"codeproject.com\"");
   print_new_line();
   print_new_line();
-  print_string("Official website :  \"charlex.com\"");
+  print_string("#end of installer ");
   print_new_line();
 
 }
