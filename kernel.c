@@ -180,5 +180,3 @@ void kernel_entry()
   print_new_line();
 
 }
-
-// this is so much beter :) (amzy-0)
