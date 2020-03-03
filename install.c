@@ -179,5 +179,4 @@ void kernel_entry()
   print_new_line();
   print_string("#end of installer ");
   print_new_line();
-
 }
