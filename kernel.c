@@ -1,5 +1,4 @@
 #include "kernel.h"
-#include "input.h"
 //index for video buffer array
 uint32 vga_index;
 //counter to store new lines
@@ -177,7 +176,7 @@ void kernel_entry()
   print_string("Retrieved from \"codeproject.com\"");
   print_new_line();
   print_new_line();
-  print_string("Official website :  \"charlex.com\"");
+  print_string("#end of kernel.c");
   print_new_line();
 
 }
