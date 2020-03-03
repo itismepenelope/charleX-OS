@@ -171,12 +171,14 @@ void kernel_entry()
   print_string("|----------------------------|");
   print_new_line();
   print_new_line();
-  print_string("This code wroted by amzy-0 (M.Amin Azimi.K)");
-  print_new_line();
+  print_string("This code authored by amzy-0 (M.Amin Azimi.K)");
+  print_new_line();it 
   print_new_line();
   print_string("Retrieved from \"codeproject.com\"");
   print_new_line();
   print_new_line();
   print_string("#end of installer ");
   print_new_line();
+
 }
+
