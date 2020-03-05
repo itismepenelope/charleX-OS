@@ -183,6 +183,6 @@ void kernel_entry()
   print_string("|------------------|");
   print_new_line();
   print_string("root@root # ");
-  print_new_line();
   input();
+  print_new_line();
 }
