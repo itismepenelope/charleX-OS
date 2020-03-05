@@ -1,17 +1,14 @@
 #ifndef KERNEL_H
 #define KERNEL_H
 
-typedef unsigned char uint8;
-typedef unsigned short uint16;
-typedef unsigned int uint32;
+#include "types.h"
 
+#define NULL 0
 
 #define VGA_ADDRESS 0xB8000
 #define BUFSIZE 2200
 
 uint16* vga_buffer;
-
-#define NULL 0
 
 enum vga_color {
     BLACK,
@@ -31,5 +28,9 @@ enum vga_color {
     YELLOW,
     WHITE,
 };
+
+
+#include "keyboard.h"
+
 
 #endif

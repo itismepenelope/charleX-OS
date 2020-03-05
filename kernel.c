@@ -1,22 +1,27 @@
 #include "kernel.h"
-#include "keyboard.h"
-//index for video buffer array
+#include "utils.h"
+#include "char.h"
+
 uint32 vga_index;
-//counter to store new lines
 static uint32 next_line_index = 1;
-//fore & back color values
 uint8 g_fore_color = WHITE, g_back_color = BLUE;
-//digit ascii code for printing integers
 int digit_ascii_codes[10] = {0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39};
 
 /*
-16 bit video buffer elements(register ax)
-8 bits(ah) higher :
-  lower 4 bits - forec olor
-  higher 4 bits - back color
+this is same as we did in our assembly code for vga_print_char
 
-8 bits(al) lower :
-  8 bits : ASCII character to print
+vga_print_char:
+  mov di, word[VGA_INDEX]
+  mov al, byte[VGA_CHAR]
+
+  mov ah, byte[VGA_BACK_COLOR]
+  sal ah, 4
+  or ah, byte[VGA_FORE_COLOR]
+
+  mov [es:di], ax
+
+  ret
+
 */
 uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color)
 {
@@ -34,7 +39,6 @@ uint16 vga_entry(unsigned char ch, uint8 fore_color, uint8 back_color)
   return ax;
 }
 
-//clear video buffer array
 void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
 {
   uint32 i;
@@ -45,7 +49,6 @@ void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
   vga_index = 0;
 }
 
-//initialize vga buffer
 void init_vga(uint8 fore_color, uint8 back_color)
 {
   vga_buffer = (uint16*)VGA_ADDRESS;
@@ -54,9 +57,6 @@ void init_vga(uint8 fore_color, uint8 back_color)
   g_back_color = back_color;
 }
 
-/*
-increase vga_index by width of row(80)
-*/
 void print_new_line()
 {
   if(next_line_index >= 55){
@@ -67,54 +67,12 @@ void print_new_line()
   next_line_index++;
 }
 
-//assign ascii character to video buffer
 void print_char(char ch)
 {
   vga_buffer[vga_index] = vga_entry(ch, g_fore_color, g_back_color);
   vga_index++;
 }
 
-
-uint32 strlen(const char* str)
-{
-  uint32 length = 0;
-  while(str[length])
-    length++;
-  return length;
-}
-
-uint32 digit_count(int num)
-{
-  uint32 count = 0;
-  if(num == 0)
-    return 1;
-  while(num > 0){
-    count++;
-    num = num/10;
-  }
-  return count;
-}
-
-void itoa(int num, char *number)
-{
-  int dgcount = digit_count(num);
-  int index = dgcount - 1;
-  char x;
-  if(num == 0 && dgcount == 1){
-    number[0] = '0';
-    number[1] = '\0';
-  }else{
-    while(num != 0){
-      x = num % 10;
-      number[index] = x + '0';
-      index--;
-      num = num / 10;
-    }
-    number[dgcount] = '\0';
-  }
-}
-
-//print string by calling print_char
 void print_string(char *str)
 {
   uint32 index = 0;
@@ -124,8 +82,6 @@ void print_string(char *str)
   }
 }
 
-//print int by converting it into string
-//& then printing string
 void print_int(int num)
 {
   char str_num[digit_count(num)+1];
@@ -133,12 +89,69 @@ void print_int(int num)
   print_string(str_num);
 }
 
+uint8 inb(uint16 port)
+{
+  uint8 ret;
+  asm volatile("inb %1, %0" : "=a"(ret) : "d"(port));
+  return ret;
+}
+
+void outb(uint16 port, uint8 data)
+{
+  asm volatile("outb %0, %1" : "=a"(data) : "d"(port));
+}
+
+char get_input_keycode()
+{
+  char ch = 0;
+  while((ch = inb(KEYBOARD_PORT)) != 0){
+    if(ch > 0)
+      return ch;
+  }
+  return ch;
+}
+
+/*
+keep the cpu busy for doing nothing(nop)
+so that io port will not be processed by cpu
+here timer can also be used, but lets do this in looping counter
+*/
+void wait_for_io(uint32 timer_count)
+{
+  while(1){
+    asm volatile("nop");
+    timer_count--;
+    if(timer_count <= 0)
+      break;
+    }
+}
+
+void sleep(uint32 timer_count)
+{
+  wait_for_io(timer_count);
+}
+
+void test_input()
+{
+  char ch = 0;
+  char keycode = 0;
+  do{
+    keycode = get_input_keycode();
+    if(keycode == KEY_ENTER){
+      print_new_line();
+    }else{
+      ch = get_ascii_char(keycode);
+      print_char(ch);
+    }
+    sleep(0x02FFFFFF);
+  }while(ch > 0);
+}
 
 void kernel_entry()
 {
   //first init vga with fore & back colors
   // init_vga(WHITE, BLACK);
-  init_vga(RED,WHITE );
+  init_vga(RED, BLACK);
 
   /*call above function to print something
     here to change the fore & back color
@@ -161,7 +174,6 @@ void kernel_entry()
   print_string(" \\___|_| |_|\\__|_|_|  |_|\___//_/\\_\\");
   print_new_line();
 
-  print_string("");
   print_new_line();
 
   print_string("|------------------|");
@@ -170,18 +182,7 @@ void kernel_entry()
   print_new_line();
   print_string("|------------------|");
   print_new_line();
-  print_new_line();
-  print_string("This code authored by amzy-0 (M.Amin Azimi.K)");
-  print_new_line();
-  print_new_line();
-  
-  print_string("Reference :  \"codeproject.com\"");
-  print_new_line();
-  print_new_line();
-  print_string("#end of kernel.c");
-  print_new_line();
-  print_new_line();
   print_string("root@root # ");
   print_new_line();
-
+  test_input();
 }
