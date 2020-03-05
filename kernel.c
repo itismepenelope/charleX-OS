@@ -174,6 +174,7 @@ void kernel_entry()
   print_string("This code authored by amzy-0 (M.Amin Azimi.K)");
   print_new_line();
   print_new_line();
+  
   print_string("Reference :  \"codeproject.com\"");
   print_new_line();
   print_new_line();
