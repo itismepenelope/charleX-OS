@@ -131,7 +131,7 @@ void sleep(uint32 timer_count)
   wait_for_io(timer_count);
 }
 
-void test_input()
+void input()
 {
   char ch = 0;
   char keycode = 0;
@@ -184,6 +184,5 @@ void kernel_entry()
   print_new_line();
   print_string("root@root # ");
   print_new_line();
-  
-  test_input();
+  input();
 }
