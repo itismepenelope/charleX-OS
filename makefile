@@ -15,10 +15,10 @@ ld -m elf_i386 -T linker.ld kernel.o utils.o char.o boot.o -o charleX.bin -nostd
 grub-file --is-x86-multiboot charleX.bin
 
 #building the iso file
-mkdir -p isodir/boot/grub
-cp charleX.bin isodir/boot/charleX.bin
-cp grub.cfg isodir/boot/grub/grub.cfg
-grub-mkrescue -o charleX.iso isodir
+mkdir -p iso/boot/grub
+cp charleX.bin iso/boot/charleX.bin
+cp grub.cfg iso/boot/grub/grub.cfg
+grub-mkrescue -o charleX.iso iso
 
 #run it in qemu
 qemu-system-i386 charleX.iso
