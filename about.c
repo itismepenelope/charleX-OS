@@ -166,7 +166,7 @@ void kernel_entry()
 
   print_string("|------------------------|");
   print_new_line();
-  print_string("!Welcome to charleX about!");
+  print_string("!Welcome to about charleX!");
   print_new_line();
   print_string("|------------------------|");
   print_new_line();
