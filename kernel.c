@@ -1,7 +1,6 @@
 #include "sys/kernel.h"
 #include "sys/utils.h"
 #include "sys/char.h"
-#include "sys/time.h"
 uint32 vga_index;
 static uint32 next_line_index = 1;
 uint8 g_fore_color = WHITE, g_back_color = BLUE;
@@ -139,7 +138,7 @@ void input()
     keycode = get_input_keycode();
     if(keycode == KEY_ENTER){
       print_new_line();
-      print_string("root@root# ");
+      print_string("[ root @ root ]# ");
     }else{
       ch = get_ascii_char(keycode);
       print_char(ch);
@@ -183,6 +182,6 @@ void kernel_entry()
   print_new_line();
   print_string("|------------------|");
   print_new_line();
-  print_string("root@root# ");
+  print_string("[ root @ root ]# ");
   input();
 }
