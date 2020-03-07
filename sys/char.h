@@ -8,5 +8,3 @@
 extern char get_ascii_char(uint8);
 
 #endif
-
-
