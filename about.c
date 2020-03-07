@@ -1,4 +1,4 @@
-#include "kernel.h"
+#include "sys/kernel.h"
 
 //index for video buffer array
 uint32 vga_index;

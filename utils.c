@@ -1,4 +1,4 @@
-#include "utils.h"
+#include "sys/utils.h"
 
 uint32 strlen(const char* str)
 {
@@ -38,7 +38,3 @@ void itoa(int num, char *number)
     number[dgcount] = '\0';
   }
 }
-
-
-
-
