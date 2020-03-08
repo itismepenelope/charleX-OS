@@ -22,6 +22,6 @@ cp charleX.bin iso/boot/charleX.bin
 cp about.bin iso/about/about.bin
 cp grub.cfg iso/boot/grub/grub.cfg
 grub-mkrescue -o charleX.iso iso
-
+rm *.o *.bin 
 #run it in qemu
 qemu-system-i386 charleX.iso
