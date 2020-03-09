@@ -139,7 +139,34 @@ void input()
     if(keycode == KEY_ENTER){
       print_new_line();
       print_string("[ root @ root ]# ");
-    }else{
+    }
+    else if(keycode == KEY_UP){
+          print_new_line();
+          print_string("KEY UP PRESSED : ");
+          print_new_line();
+          print_string("this key not work in this terminal !");
+          print_new_line();
+
+          print_string("just type the command ! ");
+          print_new_line();
+
+          print_string("[ root @ root ]# ");
+          get_input_keycode();
+    }
+    else if(keycode == KEY_DOWN){
+          print_new_line();
+          print_string("KEY DOWN PRESSED : ");
+          print_new_line();
+          print_string("this key not work in this terminal !");
+          print_new_line();
+
+          print_string("just type the command ! ");
+          print_new_line();
+
+          print_string("[ root @ root ]# ");
+          get_input_keycode();
+    }
+    else{
       ch = get_ascii_char(keycode);
       print_char(ch);
     }
@@ -162,16 +189,16 @@ void kernel_entry()
   print_string("      _                _     __  __");
   print_new_line();
 
-  print_string("  ___| |__   __ _ _ __| | ___\\\ \\/ / ");
+  print_string("  ___| |__   __ _ _ __| | ___\\ \\/ / ");
   print_new_line();
 
   print_string(" / __| '_ \\ / _` | '__| |/ _ \\\\  / ");
   print_new_line();
 
-  print_string("| (__| | | | (_| | |  | |  __//  \\ \ ");
+  print_string("| (__| | | | (_| | |  | |  __//  \\ \\ ");
   print_new_line();
 
-  print_string(" \\___|_| |_|\\__|_|_|  |_|\___//_/\\_\\");
+  print_string(" \\___|_| |_|\\__|_|_|  |_|\\___//_/\\_\\");
   print_new_line();
 
   print_new_line();
