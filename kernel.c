@@ -166,6 +166,18 @@ void input()
           print_string("[ root @ root ]# ");
           get_input_keycode();
     }
+    else if(keycode == KEY_TAB){
+          print_new_line();
+          print_string("TAB PRESSED : ");
+          print_new_line();
+          print_string("for shutdown : PWOEROFF");
+          print_new_line();
+          print_string("for sleep : SLEEPOS");
+          print_new_line();
+
+          print_string("[ root @ root ]# ");
+          get_input_keycode();
+    }
     else{
       ch = get_ascii_char(keycode);
       print_char(ch);
@@ -178,7 +190,7 @@ void kernel_entry()
 {
   //first init vga with fore & back colors
   // init_vga(WHITE, BLACK);
-  init_vga(RED, BLACK);
+  init_vga(WHITE, BLACK);
 
   /*call above function to print something
     here to change the fore & back color
