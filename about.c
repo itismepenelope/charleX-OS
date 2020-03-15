@@ -134,8 +134,6 @@ void print_int(int num)
 }
 
 void logo(){
-  // color of terminal and logo maker function
-  init_vga(GREEN , BLACK);
   print_string("      _                _     __  __");
   print_new_line();
 
@@ -176,6 +174,8 @@ void kernel_entry()
     assign g_fore_color & g_back_color to color values
     g_fore_color = BRIGHT_RED;
   */
+  // color of terminal
+  init_vga(GREEN , BLACK);
   print_new_line();
   logo();
   print_new_line();
