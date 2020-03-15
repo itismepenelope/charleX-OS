@@ -186,31 +186,45 @@ void input()
   }while(ch > 0);
 }
 
-void kernel_entry()
-{
-  //first init vga with fore & back colors
-  // init_vga(WHITE, BLACK);
-  init_vga(WHITE, BLACK);
-
-  /*call above function to print something
-    here to change the fore & back color
-    assign g_fore_color & g_back_color to color values
-    g_fore_color = BRIGHT_RED;
-  */
-  print_new_line();
+void logo(){
+  // color of terminal and logo maker function
+  init_vga(GREEN , BLACK);
   print_string("      _                _     __  __");
   print_new_line();
 
-  print_string("  ___| |__   __ _ _ __| | ___\\ \\/ / ");
+  print_string("  ___| |__   __ _ _ __| | ___\\\ \\/ /");
   print_new_line();
 
-  print_string(" / __| '_ \\ / _` | '__| |/ _ \\\\  / ");
+  print_string(" / __| '_  \\/ _` | '__| |/ _ \\\\  /");
   print_new_line();
 
-  print_string("| (__| | | | (_| | |  | |  __//  \\ \\ ");
+  print_string("| (__| | | | (_| | |  | |  __//  \\");
   print_new_line();
 
-  print_string(" \\___|_| |_|\\__|_|_|  |_|\\___//_/\\_\\");
+  print_string(" \\___|_| |_|\\__,_|_|  |_| \___/_/\\_\\");
+  print_new_line();
+
+  print_string("        	  ___  ____      ");
+  print_new_line();
+
+  print_string("        	 / _ \\/ ___|    ");
+  print_new_line();
+
+  print_string("        	| | | \\___ \\   ");
+  print_new_line();
+
+  print_string("        	| |_| |___) |    ");
+  print_new_line();
+
+  print_string("        	 \\___/|____/    ");
+}
+
+void kernel_entry()
+{
+
+
+  print_new_line();
+  logo();
   print_new_line();
 
   print_new_line();
