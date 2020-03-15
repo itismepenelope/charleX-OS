@@ -1,9 +1,28 @@
+
+# charleX OS logo
+
+<pre>
+        _                _     __  __
+   ___| |__   __ _ _ __| | ___\ \/ /
+ / __| '_  \ / _` | '__| |/ _ \\  /
+| (__| | | | (_| | |  | |  __//  \
+\___|_| |_|\__,_|_|  |_| \___/_/\_\
+
+        	  ___  ____  
+        	 / _ \/ ___|
+        	| | | \___ \
+        	| |_| |___) |
+        	 \___/|____/
+
+
+</pre>
+
 # charleX OS
 charleX is simple OS ...
 kernel written with c programming language, and reference of this code is 'codeproject.com' .
-i still working to make better kernel than this one, and many features will added to this project . i wanna create the free and open source OS  like gnu/linux , *BSD ,... and you can support us . if you like this project,  give star to project  and send better code to us . 
+i still working to make better kernel than this one, and many features will added to this project . i wanna create the free and open source OS  like gnu/linux , *BSD ,... and you can support us . if you like this project,  give star to project  and send better code to us .
 
-# compile and run 
+# compile and run
 $as --32 boot.s -o boot.o
 
 $gcc -m32 -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O1 -Wall -Wextra
@@ -26,13 +45,12 @@ $grub-mkrescue -o charleX.iso iso
 
 $qemu-system-i386 charleX.iso
 
-#Automatic compile and run 
+#Automatic compile and run
 
 $./makefile
 
-#report bug or problems 
+#report bug or problems
 
 send bug or anythings -> amzy0zone@gmail.com
 
-thanks for reading this ! :) 
-
+thanks for reading this ! :)
