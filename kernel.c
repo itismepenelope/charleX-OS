@@ -187,8 +187,6 @@ void input()
 }
 
 void logo(){
-  // color of terminal and logo maker function
-  init_vga(GREEN , BLACK);
   print_string("      _                _     __  __");
   print_new_line();
 
@@ -223,6 +221,8 @@ void kernel_entry()
 {
 
 
+  // color of terminal
+  init_vga(GREEN , BLACK);
   print_new_line();
   logo();
   print_new_line();
