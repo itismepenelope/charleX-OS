@@ -133,12 +133,43 @@ void print_int(int num)
   print_string(str_num);
 }
 
+void logo(){
+  // color of terminal and logo maker function
+  init_vga(GREEN , BLACK);
+  print_string("      _                _     __  __");
+  print_new_line();
+
+  print_string("  ___| |__   __ _ _ __| | ___\\\ \\/ /");
+  print_new_line();
+
+  print_string(" / __| '_  \\/ _` | '__| |/ _ \\\\  /");
+  print_new_line();
+
+  print_string("| (__| | | | (_| | |  | |  __//  \\");
+  print_new_line();
+
+  print_string(" \\___|_| |_|\\__,_|_|  |_| \___/_/\\_\\");
+  print_new_line();
+
+  print_string("        	  ___  ____      ");
+  print_new_line();
+
+  print_string("        	 / _ \\/ ___|    ");
+  print_new_line();
+
+  print_string("        	| | | \\___ \\   ");
+  print_new_line();
+
+  print_string("        	| |_| |___) |    ");
+  print_new_line();
+
+  print_string("        	 \\___/|____/    ");
+}
 
 void kernel_entry()
 {
   //first init vga with fore & back colors
   // init_vga(WHITE, BLACK);
-  init_vga(RED, BLACK);
 
   /*call above function to print something
     here to change the fore & back color
@@ -146,24 +177,8 @@ void kernel_entry()
     g_fore_color = BRIGHT_RED;
   */
   print_new_line();
-  print_string("      _                _     __  __");
+  logo();
   print_new_line();
-
-  print_string("  ___| |__   __ _ _ __| | ___\\\ \\/ / ");
-  print_new_line();
-
-  print_string(" / __| '_ \\ / _` | '__| |/ _ \\\\  / ");
-  print_new_line();
-
-  print_string("| (__| | | | (_| | |  | |  __//  \\ \ ");
-  print_new_line();
-
-  print_string(" \\___|_| |_|\\__|_|_|  |_|\___//_/\\_\\");
-  print_new_line();
-
-  print_string("");
-  print_new_line();
-
   print_string("|------------------------|");
   print_new_line();
   print_string("!Welcome to about charleX!");
