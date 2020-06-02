@@ -56,7 +56,7 @@ void init_vga(uint8 fore_color, uint8 back_color)
   g_back_color = back_color;
 }
 
-void print_new_line()
+void newline_on_terminal()
 {
   if(next_line_index >= 55){
     next_line_index = 0;
@@ -72,9 +72,9 @@ void print_char(char ch)
   vga_index++;
 }
 
-void print_string(char *str)
+void print_on_terminal(char *str)
 {
-  uint32 index = 0;
+  uint32 index =0;
   while(str[index]){
     print_char(str[index]);
     index++;
@@ -85,7 +85,7 @@ void print_int(int num)
 {
   char str_num[digit_count(num)+1];
   itoa(num, str_num);
-  print_string(str_num);
+  print_on_terminal(str_num);
 }
 
 uint8 inb(uint16 port)
@@ -100,7 +100,7 @@ void outb(uint16 port, uint8 data)
   asm volatile("outb %0, %1" : "=a"(data) : "d"(port));
 }
 
-char get_input_keycode()
+char get_input_prompt()
 {
   char ch = 0;
   while((ch = inb(KEYBOARD_PORT)) != 0){
@@ -135,48 +135,55 @@ void input()
   char ch = 0;
   char keycode = 0;
   do{
-    keycode = get_input_keycode();
+    keycode = get_input_prompt();
+
     if(keycode == KEY_ENTER){
-      print_new_line();
-      print_string("[ root @ root ]# ");
+
+      for (size_t i = 0; i < count; i++) {
+        
+        newline_on_terminal();
+      }
+
+      print_on_terminal("[ root @ root ]# ");
+
     }
     else if(keycode == KEY_UP){
-          print_new_line();
-          print_string("KEY UP PRESSED : ");
-          print_new_line();
-          print_string("this key not work in this terminal !");
-          print_new_line();
+          newline_on_terminal();
+          print_on_terminal("KEY UP PRESSED : ");
+          newline_on_terminal();
+          print_on_terminal("this key not work in this terminal !");
+          newline_on_terminal();
 
-          print_string("just type the command ! ");
-          print_new_line();
+          print_on_terminal("just type the command ! ");
+          newline_on_terminal();
 
-          print_string("[ root @ root ]# ");
-          get_input_keycode();
+          print_on_terminal("[ root @ root ]# ");
+          get_input_prompt();
     }
     else if(keycode == KEY_DOWN){
-          print_new_line();
-          print_string("KEY DOWN PRESSED : ");
-          print_new_line();
-          print_string("this key not work in this terminal !");
-          print_new_line();
+          newline_on_terminal();
+          print_on_terminal("KEY DOWN PRESSED : ");
+          newline_on_terminal();
+          print_on_terminal("this key not work in this terminal !");
+          newline_on_terminal();
 
-          print_string("just type the command ! ");
-          print_new_line();
+          print_on_terminal("just type the command ! ");
+          newline_on_terminal();
 
-          print_string("[ root @ root ]# ");
-          get_input_keycode();
+          print_on_terminal("[ root @ root ]# ");
+          get_input_prompt();
     }
     else if(keycode == KEY_TAB){
-          print_new_line();
-          print_string("TAB PRESSED : ");
-          print_new_line();
-          print_string("for shutdown : PWOEROFF");
-          print_new_line();
-          print_string("for sleep : SLEEPOS");
-          print_new_line();
+          newline_on_terminal();
+          print_on_terminal("TAB PRESSED : ");
+          newline_on_terminal();
+          print_on_terminal("for shutdown : PWOEROFF");
+          newline_on_terminal();
+          print_on_terminal("for sleep : SLEEPOS");
+          newline_on_terminal();
 
-          print_string("[ root @ root ]# ");
-          get_input_keycode();
+          print_on_terminal("[ root @ root ]# ");
+          get_input_prompt();
     }
     else{
       ch = get_ascii_char(keycode);
@@ -187,34 +194,34 @@ void input()
 }
 
 void logo(){
-  print_string("      _                _     __  __");
-  print_new_line();
+  print_on_terminal("      _                _     __  __");
+  newline_on_terminal();
 
-  print_string("  ___| |__   __ _ _ __| | ___\\\ \\/ /");
-  print_new_line();
+  print_on_terminal("  ___| |__   __ _ _ __| | ___\\\ \\/ /");
+  newline_on_terminal();
 
-  print_string(" / __| '_  \\/ _` | '__| |/ _ \\\\  /");
-  print_new_line();
+  print_on_terminal(" / __| '_  \\/ _` | '__| |/ _ \\\\  /");
+  newline_on_terminal();
 
-  print_string("| (__| | | | (_| | |  | |  __//  \\");
-  print_new_line();
+  print_on_terminal("| (__| | | | (_| | |  | |  __//  \\");
+  newline_on_terminal();
 
-  print_string(" \\___|_| |_|\\__,_|_|  |_| \___/_/\\_\\");
-  print_new_line();
+  print_on_terminal(" \\___|_| |_|\\__,_|_|  |_| \___/_/\\_\\");
+  newline_on_terminal();
 
-  print_string("        	  ___  ____      ");
-  print_new_line();
+  print_on_terminal("        	  ___  ____      ");
+  newline_on_terminal();
 
-  print_string("        	 / _ \\/ ___|    ");
-  print_new_line();
+  print_on_terminal("        	 / _ \\/ ___|    ");
+  newline_on_terminal();
 
-  print_string("        	| | | \\___ \\   ");
-  print_new_line();
+  print_on_terminal("        	| | | \\___ \\   ");
+  newline_on_terminal();
 
-  print_string("        	| |_| |___) |    ");
-  print_new_line();
+  print_on_terminal("        	| |_| |___) |    ");
+  newline_on_terminal();
 
-  print_string("        	 \\___/|____/    ");
+  print_on_terminal("        	 \\___/|____/    ");
 }
 
 void kernel_entry()
@@ -223,18 +230,21 @@ void kernel_entry()
 
   // color of terminal
   init_vga(GREEN , BLACK);
-  print_new_line();
+  newline_on_terminal();
+
   logo();
-  print_new_line();
 
-  print_new_line();
+  newline_on_terminal();
 
-  print_string("|------------------|");
-  print_new_line();
-  print_string("!Welcome to charleX!");
-  print_new_line();
-  print_string("|------------------|");
-  print_new_line();
-  print_string("[ root @ root ]# ");
+  newline_on_terminal();
+
+  print_on_terminal("|------------------|");
+  newline_on_terminal();
+  print_on_terminal("!Welcome to charleX!");
+  newline_on_terminal();
+  print_on_terminal("|------------------|");
+  newline_on_terminal();
+  print_on_terminal("[ root @ root ]# ");
   input();
+
 }
