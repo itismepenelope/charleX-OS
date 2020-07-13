@@ -139,10 +139,9 @@ void input()
 
     if(keycode == KEY_ENTER){
 
-      for (size_t i = 0; i < count; i++) {
+      //for (size_t i = 0; i < count; i++) {
         
         newline_on_terminal();
-      }
 
       print_on_terminal("[ root @ root ]# ");
 
@@ -185,11 +184,25 @@ void input()
           print_on_terminal("[ root @ root ]# ");
           get_input_prompt();
     }
+    else if(keycode == KEY_ESC){
+        init_vga(RED,BLACK);
+        newline_on_terminal();
+        newline_on_terminal();
+        newline_on_terminal();
+        print_on_terminal("EXIT !");
+        newline_on_terminal();
+        print_on_terminal("if you wnat use CHARLEX-OS => please REBOOT your machine !");
+        get_input_prompt();
+        input();
+    }
     else{
       ch = get_ascii_char(keycode);
       print_char(ch);
     }
-    sleep(0x02FFFFFF);
+    for (int i = 0; i < 1; i++){
+      sleep(0x02FFFFFF);
+    }
+    
   }while(ch > 0);
 }
 
@@ -229,10 +242,10 @@ void kernel_entry()
 
 
   // color of terminal
-  init_vga(GREEN , BLACK);
+  init_vga(GREEN, BLACK);
   newline_on_terminal();
-
   logo();
+
 
   newline_on_terminal();
 
@@ -243,6 +256,12 @@ void kernel_entry()
   print_on_terminal("!Welcome to charleX!");
   newline_on_terminal();
   print_on_terminal("|------------------|");
+
+  for (int i = 0; i < 40; i++){
+    sleep(0x02FFFFFF);
+  }
+  
+  init_vga(GREEN , BLACK);
   newline_on_terminal();
   print_on_terminal("[ root @ root ]# ");
   input();
