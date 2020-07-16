@@ -51,6 +51,6 @@ $./makefile
 
 #report bug or problems
 
-send bug or anythings -> amzy0zone@gmail.com
+send bug or anythings : amzy0zone@gmail.com
 
 thanks for reading this ! :)
