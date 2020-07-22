@@ -45,11 +45,16 @@ $grub-mkrescue -o charleX.iso iso
 
 $qemu-system-i386 charleX.iso
 
-#Automatic compile and run
+# Automatic compile and run
 
 $./makefile
 
-#report bug or problems
+
+# GCC Cross Compiler 
+
+$ ./gccCrosComplier (apt,yum,dnf,...)
+
+# report bug or problems
 
 send bug or anythings : amzy0zone@gmail.com
 
