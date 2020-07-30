@@ -18,10 +18,9 @@
 </pre>
 
 # charleX OS
-charleX is simple OS ...
-kernel written with c programming language, and reference of this code is bacilica OS.
-i still working to make better kernel than this one, and many features will added to this project . i wanna create the free and open source OS  like gnu/linux , *BSD ,... and you can support us . if you like this project,  give star to project  and send better code to us .
-
+charleX is a simple OS ... kernel written with c programming language and reference of this code is 'codeproject.com'. 
+I still working to make a better kernel than this one, and many features will be added to this project. 
+I wanna create the free and open-source OS like gnu/Linux, *BSD,... and you can support us. if you like this project, give a star to the project and send better code to us.
 # compile and run
 $as --32 boot.s -o boot.o
 
