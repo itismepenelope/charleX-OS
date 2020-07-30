@@ -146,7 +146,7 @@ void logo(){
   print_string("| (__| | | | (_| | |  | |  __//  \\");
   print_new_line();
 
-  print_string(" \\___|_| |_|\\__,_|_|  |_| \___/_/\\_\\");
+  print_string(" \\___|_| |_|\\__,_|_|  |_| \\___/_/\\_\\");
   print_new_line();
 
   print_string("        	  ___  ____      ");
