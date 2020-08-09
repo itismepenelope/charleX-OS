@@ -137,7 +137,7 @@ void logo(){
   print_string("      _                _     __  __");
   print_new_line();
 
-  print_string("  ___| |__   __ _ _ __| | ___\\\ \\/ /");
+  print_string("  ___| |__   __ _ _ __| | ___\\\\ \\/ /");
   print_new_line();
 
   print_string(" / __| '_  \\/ _` | '__| |/ _ \\\\  /");
@@ -187,7 +187,7 @@ void kernel_entry()
   print_new_line();
   print_string("|---------------------------------------|");
   print_new_line();
-  print_string("| Authored by : amzy-0 (M.Amin Azimi.K) |");
+  print_string("| Created  by : amzy-0 (M.Amin Azimi.K) |");
   print_new_line();
   print_string("|---------------------------------------|");
   print_new_line();
