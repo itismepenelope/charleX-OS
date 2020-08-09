@@ -46,12 +46,14 @@ $qemu-system-i386 charleX.iso
 
 # Automatic compile and run
 
+$chmod +x makefile
 $./makefile
 
 
 # GCC Cross Compiler 
 
-$ ./gccCrosComplier (apt,yum,dnf,...)
+$chmod +x ./gccCrossCompiler
+$./gccCrossComplier (apt,yum,dnf,...)
 
 # report bug or problems
 
