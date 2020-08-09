@@ -48,6 +48,9 @@ void clear_vga_buffer(uint16 **buffer, uint8 fore_color, uint8 back_color)
   vga_index = 0;
 }
 
+
+// set terminal color
+
 void init_vga(uint8 fore_color, uint8 back_color)
 {
   vga_buffer = (uint16*)VGA_ADDRESS;
@@ -55,6 +58,9 @@ void init_vga(uint8 fore_color, uint8 back_color)
   g_fore_color = fore_color;
   g_back_color = back_color;
 }
+
+
+//this function print a new line on your termninal like '\n'
 
 void newline_on_terminal()
 {
@@ -99,7 +105,8 @@ void outb(uint16 port, uint8 data)
 {
   asm volatile("outb %0, %1" : "=a"(data) : "d"(port));
 }
-
+// get keys from your keyboard 
+//and read 
 char get_input_prompt()
 {
   char ch = 0;
@@ -118,34 +125,36 @@ here timer can also be used, but lets do this in looping counter
 void wait_for_io(uint32 timer_count)
 {
   while(1){
-    asm volatile("nop");
+    asm volatile("nop" /*do noting*/  );
     timer_count--;
     if(timer_count <= 0)
       break;
     }
 }
-
+//sleep function 
 void sleep(uint32 timer_count)
 {
   wait_for_io(timer_count);
 }
 
+// get and read the keys  and kernel reaction 
 void input()
 {
   char ch = 0;
   char keycode = 0;
   do{
     keycode = get_input_prompt();
-
+    // if client press enter (KEY)
     if(keycode == KEY_ENTER){
 
       //for (size_t i = 0; i < count; i++) {
         
         newline_on_terminal();
 
-      print_on_terminal("[ root @ root ]# ");
+      print_on_terminal("[ root @ charleX ]# ");
 
     }
+    //if client press arrow up (KEY)
     else if(keycode == KEY_UP){
           newline_on_terminal();
           print_on_terminal("KEY UP PRESSED : ");
@@ -156,9 +165,10 @@ void input()
           print_on_terminal("just type the command ! ");
           newline_on_terminal();
 
-          print_on_terminal("[ root @ root ]# ");
+          print_on_terminal("[ root @ charleX ]# ");
           get_input_prompt();
     }
+    //if client press arrow down (KEY)
     else if(keycode == KEY_DOWN){
           newline_on_terminal();
           print_on_terminal("KEY DOWN PRESSED : ");
@@ -169,9 +179,10 @@ void input()
           print_on_terminal("just type the command ! ");
           newline_on_terminal();
 
-          print_on_terminal("[ root @ root ]# ");
+          print_on_terminal("[ root @ charleX ]# ");
           get_input_prompt();
     }
+    //if client press TAB (KEY)
     else if(keycode == KEY_TAB){
           newline_on_terminal();
           print_on_terminal("TAB PRESSED : ");
@@ -181,9 +192,10 @@ void input()
           print_on_terminal("for sleep : SLEEPOS");
           newline_on_terminal();
 
-          print_on_terminal("[ root @ root ]# ");
+          print_on_terminal("[ root @ charleX ]# ");
           get_input_prompt();
     }
+    //if client press ESC (KEY)
     else if(keycode == KEY_ESC){
         init_vga(RED,BLACK);
         newline_on_terminal();
@@ -200,17 +212,19 @@ void input()
       print_char(ch);
     }
     for (int i = 0; i < 1; i++){
-      sleep(0x02FFFFFF);
+      sleep(0x02FEEFFA);
     }
     
   }while(ch > 0);
 }
 
+// this function load logo 
+
 void logo(){
   print_on_terminal("      _                _     __  __");
   newline_on_terminal();
 
-  print_on_terminal("  ___| |__   __ _ _ __| | ___\\\ \\/ /");
+  print_on_terminal("  ___| |__   __ _ _ __| | ___\\\\ \\/ /");
   newline_on_terminal();
 
   print_on_terminal(" / __| '_  \\/ _` | '__| |/ _ \\\\  /");
@@ -219,7 +233,7 @@ void logo(){
   print_on_terminal("| (__| | | | (_| | |  | |  __//  \\");
   newline_on_terminal();
 
-  print_on_terminal(" \\___|_| |_|\\__,_|_|  |_| \___/_/\\_\\");
+  print_on_terminal(" \\___|_| |_|\\__,_|_|  |_| \\___/_/\\_\\");
   newline_on_terminal();
 
   print_on_terminal("        	  ___  ____      ");
@@ -237,11 +251,12 @@ void logo(){
   print_on_terminal("        	 \\___/|____/    ");
 }
 
+// kernel entery point !!
 void kernel_entry()
 {
 
 
-  // color of terminal
+  // color of terminal(you can change it if you want :D )
   init_vga(GREEN, BLACK);
   newline_on_terminal();
   logo();
@@ -257,13 +272,16 @@ void kernel_entry()
   newline_on_terminal();
   print_on_terminal("|------------------|");
 
-  for (int i = 0; i < 40; i++){
-    sleep(0x02FFFFFF);
+  for (int i = 0; i < 20; i++){
+//    sleep(0x02FFFFFA); // sleep for logo  ;;
+      sleep(0x02FFFFFFA); // sleep for  ;;
   }
-  
+  //color set to green and black 
   init_vga(GREEN , BLACK);
   newline_on_terminal();
-  print_on_terminal("[ root @ root ]# ");
+  // input() for   infinity loop (terminal loop infinity) 
+  print_on_terminal("[ root @ charleX ]# ");
   input();
 
+     
 }
