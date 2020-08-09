@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "includes/kernel.h"
 #include "includes/utils.h"
 #include "includes/char.h"
